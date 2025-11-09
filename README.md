@@ -21,7 +21,7 @@ The naming convention for APT groups follows CrowdStrike's taxonomy.
 
 ![photo_2025-11-09_04-26-38](https://github.com/user-attachments/assets/9a91fca1-a407-4a8c-a0ab-f4dba0f92197)
 
-`Below is the complete list of simulated APT Groups:`
+**`Below is the complete list of simulated APT Groups:`**
 
 | **Country of Origin** | **Russia 🇷🇺** | **China 🇨🇳** | **North Korea 🇰🇵** | **Iran 🇮🇷** |
 |-----------------------|----------------|----------------|--------------------|---------------|
