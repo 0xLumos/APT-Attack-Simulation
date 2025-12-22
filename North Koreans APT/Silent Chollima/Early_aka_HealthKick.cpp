@@ -1,4 +1,5 @@
 // Compile: x86_64-w64-mingw32-g++ -std=c++17 -o  Early_aka_HealthKick.exe  Early_aka_HealthKick.cpp -static -lwinhttp -lws2_32 -lgdi32 -mwindows -lole32 -loleaut32
+
 // Execution: Early_aka_HealthKick.exe -SilentChollima
 
 #include <windows.h>
