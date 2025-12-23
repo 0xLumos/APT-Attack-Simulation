@@ -41,7 +41,10 @@ It builds a command string that runs the copied malware with -SilentChollima eve
 
 <img width="1257" height="474" alt="Screenshot From 2025-12-23 05-45-16" src="https://github.com/user-attachments/assets/5bb24a9c-c6de-4204-8404-386b8f43e660" />
 
-C&C server on HTTPS (port 465): The implant communicates exclusively over encrypted HTTPS channels with the remote command-and-control server. All network traffic, including check-ins, task retrieval, and results, is protected using XOR encryption (key: 11) combined with Base64 encoding before transmission. When a command is received, it is first XOR-decrypted, then checked for the "EP" prefix to determine if it should be executed via PowerShell or cmd.exe. PowerShell commands are properly escaped and run silently using powershell.exe -NoProfile -NonInteractive -Command, with full stdout/stderr capture. The command output is captured, XOR-encrypted with the same key, Base64-encoded, and securely sent back to the C2 server over HTTPS.
+C&C server on HTTPS (port 465): The implant communicates exclusively over encrypted HTTPS channels with the remote command-and-control server. All network traffic, including check ins, task retrieval, and results, is protected using XOR encryption (key: 11) combined with Base64 encoding before transmission. When a command is received, it is first XOR decrypted, then checked for the "EP" prefix to determine if it should be executed via PowerShell or cmd.exe. PowerShell commands are properly escaped and run silently using powershell.exe -NoProfile -NonInteractive -Command, with full stdout/stderr capture. The command output is captured, XOR-encrypted with the same key, Base64-encoded, and securely sent back to the C2 server over HTTPS.
+
+![photo_2025-12-23_06-15-38](https://github.com/user-attachments/assets/f5d3f945-5ae7-432e-bc31-4dbe3b58b275)
+
 
 
 
