@@ -30,14 +30,20 @@ Throughout various campaigns Volexity observed active changes in the malware, wi
 
 <img width="931" height="491" alt="Screenshot From 2025-12-23 05-42-05" src="https://github.com/user-attachments/assets/2c79644f-2ae3-4005-885f-7b0f144a773d" />
 
-GOVERSHELL is a stealthy Windows implant that communicates over HTTPS with a remote command-and-control server.It uses XOR encryption combined with Base64 to protect all network traffic and payloads from casual inspection. Upon first execution without its specific argument, it silently copies itself to a random folder in C:\ProgramData and establishes persistence via a hidden scheduled task. Once persistent, it repeatedly checks in with the server, receives encrypted commands, executes them locally (via cmd or PowerShell), and sends back results. The implant applies configurable jitter delays between communications to evade pattern-based detection.
+GOVERSHELL is a stealthy Windows implant that communicates over HTTPS with a remote command and control server.It uses XOR encryption combined with Base64 to protect all network traffic and payloads from casual inspection. Upon first execution without its specific argument, it silently copies itself to a random folder in C:\ProgramData and establishes persistence via a hidden scheduled task. Once persistent, it repeatedly checks in with the server, receives encrypted commands, executes them locally (via cmd or PowerShell), and sends back results. The implant applies configurable jitter delays between communications to evade pattern-based detection.
 
 <img width="930" height="398" alt="Screenshot From 2025-12-23 05-43-30" src="https://github.com/user-attachments/assets/f135f9a3-d84d-4c5e-b9c4-cc74c0b5f854" />
+
+## The third stage (Persistence & C2 traffic)
 
 This function creates a hidden scheduled task named "SystemHealthMonitor" using schtasks.exe executed silently via CreateProcessA.
 It builds a command string that runs the copied malware with -SilentChollima every 5 minutes at highest privileges. The process is launched with CREATE_NO_WINDOW and SW_HIDE flags to prevent any visible console or window. It safely copies the command into a fixed buffer, null-terminates it, and waits up to 5 seconds for completion. Returns true on success, ensuring stealthy, self-healing persistence without dropping additional files.
 
 <img width="1257" height="474" alt="Screenshot From 2025-12-23 05-45-16" src="https://github.com/user-attachments/assets/5bb24a9c-c6de-4204-8404-386b8f43e660" />
+
+C&C server on HTTPS (port 465): The implant communicates exclusively over encrypted HTTPS channels with the remote command-and-control server. All network traffic, including check-ins, task retrieval, and results, is protected using XOR encryption (key: 11) combined with Base64 encoding before transmission. When a command is received, it is first XOR-decrypted, then checked for the "EP" prefix to determine if it should be executed via PowerShell or cmd.exe. PowerShell commands are properly escaped and run silently using powershell.exe -NoProfile -NonInteractive -Command, with full stdout/stderr capture. The command output is captured, XOR-encrypted with the same key, Base64-encoded, and securely sent back to the C2 server over HTTPS.
+
+
 
 
 
