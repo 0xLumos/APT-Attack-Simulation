@@ -24,7 +24,7 @@ I recreated an HTML file identical to that used by the attackers. When the PDF i
 
 <img width="1365" height="735" alt="Screenshot From 2025-12-23 04-36-43" src="https://github.com/user-attachments/assets/39124cb1-2a81-4858-979b-de5716f56345" />
 
-## The second stage (GOVERSHELL)
+## The second stage (GOVERSHELL payload)
 
 
 
