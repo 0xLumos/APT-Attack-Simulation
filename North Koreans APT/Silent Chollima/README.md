@@ -21,5 +21,12 @@ Silent Chollima primary and sole method for targeting organizations is by conduc
 
 <img width="606" height="403" alt="imageedit_3_3905276592" src="https://github.com/user-attachments/assets/2de80e43-4933-421d-bb61-c34281e6bc5e" />
 
+I recreated an HTML file identical to that used by the attackers. When the PDF icon is clicked, it redirects the user to a browser link that downloads the malicious payload hosted by the BEAR-C2 project.
+
+<img width="1365" height="735" alt="Screenshot From 2025-12-23 04-36-43" src="https://github.com/user-attachments/assets/39124cb1-2a81-4858-979b-de5716f56345" />
+
+
+
+
 
 
