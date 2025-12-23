@@ -18,13 +18,13 @@ This is a simulation of attack by (Silent Chollima) APT group targeting several 
 
 Silent Chollima primary and sole method for targeting organizations is by conducting spear phishing campaigns. Between June and August 2025, Silent Chollima sent phishing emails containing HTML that included an image to make it appear a document was attached to the email. If the image were clicked, it led to the download of a remotely hosted archive file. Users would then need to open and execute the executable file within the archive in order to become infected. An example body from one such email is included below.
 
-
 <img width="606" height="403" alt="imageedit_3_3905276592" src="https://github.com/user-attachments/assets/2de80e43-4933-421d-bb61-c34281e6bc5e" />
 
 I recreated an HTML file identical to that used by the attackers. When the PDF icon is clicked, it redirects the user to a browser link that downloads the malicious payload hosted by the BEAR-C2 project.
 
 <img width="1365" height="735" alt="Screenshot From 2025-12-23 04-36-43" src="https://github.com/user-attachments/assets/39124cb1-2a81-4858-979b-de5716f56345" />
 
+## The second stage (GOVERSHELL)
 
 
 
