@@ -26,6 +26,8 @@ I recreated an HTML file identical to that used by the attackers. When the PDF i
 
 ## The second stage (GOVERSHELL payload)
 
+Throughout various campaigns Volexity observed active changes in the malware, with significant differences in how the malware communicated and functioned. All variants observed by Volexity make use of a scheduled task for persistence and provide the operator the ability to execute arbitrary commands on the target’s device. With the exception of the first variant, all GOVERSHELL implants were DLL files that were loaded via search order hijacking from the legitimate version of either the 32- or 64-bit version of an open-source project called Tablacus Explorer.
+
 
 
 
