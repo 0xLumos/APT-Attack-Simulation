@@ -9,3 +9,17 @@ This is a simulation of attack by (Silent Chollima) APT group targeting several 
 2. GOVERSHELL: All implants were DLL files that were loaded via search order hijacking from the legitimate version of either the 32- or 64-bit version of an open-source project.
 
 3. Persistence & C2 traffic: Each variant of GOVERSHELL sets up persistence via a scheduled task on its first execution and includes a command-line flag in that persistence execution, which is required to execute the logic that includes C2 communication.
+
+<img width="938" height="289" alt="imageedit_1_9709470955" src="https://github.com/user-attachments/assets/69920aa9-ecc3-48d6-823a-06e26ef433e7" />
+
+
+
+## The first stage (social engineering technique)
+
+Silent Chollima primary and sole method for targeting organizations is by conducting spear phishing campaigns. Between June and August 2025, Silent Chollima sent phishing emails containing HTML that included an image to make it appear a document was attached to the email. If the image were clicked, it led to the download of a remotely hosted archive file. Users would then need to open and execute the executable file within the archive in order to become infected. An example body from one such email is included below.
+
+
+<img width="606" height="403" alt="imageedit_3_3905276592" src="https://github.com/user-attachments/assets/2de80e43-4933-421d-bb61-c34281e6bc5e" />
+
+
+
