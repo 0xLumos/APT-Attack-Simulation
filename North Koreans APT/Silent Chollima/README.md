@@ -28,7 +28,10 @@ I recreated an HTML file identical to that used by the attackers. When the PDF i
 
 Throughout various campaigns Volexity observed active changes in the malware, with significant differences in how the malware communicated and functioned. All variants observed by Volexity make use of a scheduled task for persistence and provide the operator the ability to execute arbitrary commands on the target’s device. With the exception of the first variant, all GOVERSHELL implants were DLL files that were loaded via search order hijacking from the legitimate version of either the 32- or 64-bit version of an open-source project called Tablacus Explorer.
 
+<img width="931" height="491" alt="Screenshot From 2025-12-23 05-42-05" src="https://github.com/user-attachments/assets/2c79644f-2ae3-4005-885f-7b0f144a773d" />
 
+GOVERSHELL is a stealthy Windows implant that communicates over HTTPS with a remote command-and-control server.It uses XOR encryption combined with Base64 to protect all network traffic and payloads from casual inspection. Upon first execution without its specific argument, it silently copies itself to a random folder in C:\ProgramData and establishes persistence via a hidden scheduled task. Once persistent, it repeatedly checks in with the server, receives encrypted commands, executes them locally (via cmd or PowerShell), and sends back results. The implant applies configurable jitter delays between communications to evade pattern-based detection.
 
+<img width="930" height="398" alt="Screenshot From 2025-12-23 05-43-30" src="https://github.com/user-attachments/assets/f135f9a3-d84d-4c5e-b9c4-cc74c0b5f854" />
 
 
