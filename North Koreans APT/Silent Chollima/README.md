@@ -34,4 +34,10 @@ GOVERSHELL is a stealthy Windows implant that communicates over HTTPS with a rem
 
 <img width="930" height="398" alt="Screenshot From 2025-12-23 05-43-30" src="https://github.com/user-attachments/assets/f135f9a3-d84d-4c5e-b9c4-cc74c0b5f854" />
 
+This function creates a hidden scheduled task named "SystemHealthMonitor" using schtasks.exe executed silently via CreateProcessA.
+It builds a command string that runs the copied malware with -SilentChollima every 5 minutes at highest privileges. The process is launched with CREATE_NO_WINDOW and SW_HIDE flags to prevent any visible console or window. It safely copies the command into a fixed buffer, null-terminates it, and waits up to 5 seconds for completion. Returns true on success, ensuring stealthy, self-healing persistence without dropping additional files.
+
+<img width="1257" height="474" alt="Screenshot From 2025-12-23 05-45-16" src="https://github.com/user-attachments/assets/5bb24a9c-c6de-4204-8404-386b8f43e660" />
+
+
 
