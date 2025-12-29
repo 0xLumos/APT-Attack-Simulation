@@ -16,6 +16,7 @@ This repository contains detailed adversary simulation APT campaigns targeting v
 **Learn more about the importance and methodology:**
 - [**Why Adversary Simulation?**](https://medium.com/@S3N4T0R/why-adversary-simulation-a1c69e8bd93a) - Understanding the strategic value of simulating advanced threats
 - [**Adversary Simulation VS Adversary Emulation**](https://medium.com/@S3N4T0R/adversary-simulation-vs-adversary-emulation-381b920a12f6) - Key differences and when to use each approach
+- [**How do I simulate an APT**](https://medium.com/@S3N4T0R/adversary-simulation-is-not-a-methodology-its-the-outcome-of-experience-4dfeafdba6da?postPublishedType=initial) - Adversary Simulation Is Not a Methodology It’s the Outcome of Experience
 
 ## 🎯 Simulated APT Groups
 
